@@ -10,6 +10,7 @@ const App = () => {
   const [products, setProducts] = useState([])
   const [productSelect, setproductSelect] = useState([])
   const [modalVisible, setModalVisible] = useState(false)
+  const [modalEditVisible, setModalEditVisible] = useState(false)
   
   const handleAddProduct = () =>{
         const newProduct = {
@@ -31,6 +32,21 @@ const App = () => {
   const handleDeleteProduct = ()=> {
     setProducts(current => current.filter(product => product.id !== productSelect.id))
     setModalVisible(false)
+  }
+
+  const handleCard = (item) =>{
+    setproductSelect(item)
+    console.log(item.id)
+    setModalEditVisible(true)
+  }
+
+  const handleConfirmarCambio = () =>{
+    let idBuscado = productSelect.id
+    let indice = products.findIndex(item => item.id === idBuscado)
+    if(indice !== -1){
+      products[indice].title = "holanuevonombreaqui"
+    }
+    setModalEditVisible(false)
   }
 
   return (
@@ -55,6 +71,7 @@ const App = () => {
             renderItem={({item})=>  <View style={styles.productCard}>
                                     <Text style={styles.textProduct}>{item.title}</Text>
                                     <Text style={styles.textProduct}>{item.price}</Text>
+                                    <Button title="EDIT" onPress={()=>handleCard(item)} />
                                     <Button title="DELETE" onPress={()=>handleModal(item)} />
                                   </View>}  
           />
@@ -69,6 +86,28 @@ const App = () => {
                   <Text style={styles.modalText}>{productSelect.title}</Text>
                   <Button title='Confirmo' onPress={() => handleDeleteProduct()} />
                   <Button title="Cerrar" onPress={()=>setModalVisible(false)} />
+                </View>
+              </View>
+          </Modal>
+          <Modal style={styles.modalContent}
+            visible={modalEditVisible}
+            >
+              <View style={styles.modalContainer}>
+                <View style={styles.modalContent}>
+                  <TextInput 
+                  placeholder="Nuevo nombre"
+                  value={newTitleProduct}
+                  style={styles.input}
+                  onChangeText={(t)=> setNewTitleProduct(t)} />
+                  <TextInput 
+                  placeholder="Nuevo precio"
+                  value={newPrecioProduct}
+                  style={styles.input}
+                  onChangeText={(t)=> setNewPrecioProduct(t)} />
+                  <Text style={styles.modalText}>Nombre actual:{productSelect.title}</Text>
+                  <Text style={styles.modalText}>Precio actual:{productSelect.price}</Text>
+                  <Button title='Confirmo' onPress={() => handleConfirmarCambio()} />
+                  <Button title="Cerrar" onPress={()=>setModalEditVisible(false)} />
                 </View>
               </View>
           </Modal>
