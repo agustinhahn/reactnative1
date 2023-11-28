@@ -1,31 +1,77 @@
 
-import { View, StyleSheet, TextInput, Button, Text } from 'react-native'
+import { useState } from 'react'
+import { View, StyleSheet, TextInput, Button, Text, FlatList, Modal } from 'react-native'
+import uuid from 'react-native-uuid';
 
 const App = () => {
+
+  const [newTitleProduct, setNewTitleProduct] = useState("")
+  const [newPrecioProduct, setNewPrecioProduct] = useState("")
+  const [products, setProducts] = useState([])
+  const [productSelect, setproductSelect] = useState([])
+  const [modalVisible, setModalVisible] = useState(false)
+  
+  const handleAddProduct = () =>{
+        const newProduct = {
+          id : uuid.v4(),
+          title:newTitleProduct,
+          price: newPrecioProduct
+        }
+        setProducts(current => [...current, newProduct])
+        setNewTitleProduct("")
+        setNewPrecioProduct("")
+        console.log(products)
+  }
+
+  const handleModal = (item) => {
+    setproductSelect(item)
+    setModalVisible(true)
+  }
+
+  const handleDeleteProduct = ()=> {
+    setProducts(current => current.filter(product => product.id !== productSelect.id))
+    setModalVisible(false)
+  }
+
   return (
     <View style={styles.containerGral}>
       <View style={styles.container}>
         <TextInput 
-        placeholder="ingrese producto"
-        style={styles.input} />
-        <Button title="ADD"/>
+        placeholder="Nombre"
+        value={newTitleProduct}
+        style={styles.input}
+        onChangeText={(t)=> setNewTitleProduct(t)} />
+        <TextInput 
+        placeholder="Precio"
+        value={newPrecioProduct}
+        style={styles.input}
+        onChangeText={(t)=> setNewPrecioProduct(t)} />
+        <Button title="ADD" onPress={handleAddProduct}/>
       </View>
       <View style={styles.listContainer}>
-        <View style={styles.productCard}>
-          <Text style={styles.textProduct}>product 1</Text>
-          <Text style={styles.textProduct}>$500</Text>
-          <Button title="DELETE" />
-        </View>
-        <View style={styles.productCard}>
-          <Text style={styles.textProduct}>product 2</Text>
-          <Text style={styles.textProduct}>$150</Text>
-          <Button title="DELETE" />
-        </View>
-        <View style={styles.productCard}>
-          <Text style={styles.textProduct} >product 3</Text>
-          <Text style={styles.textProduct}>$800</Text>
-          <Button title="DELETE"/>
-        </View>
+          <FlatList 
+            data={products}
+            keyExtractor={item => item.id}
+            renderItem={({item})=>  <View style={styles.productCard}>
+                                    <Text style={styles.textProduct}>{item.title}</Text>
+                                    <Text style={styles.textProduct}>{item.price}</Text>
+                                    <Button title="DELETE" onPress={()=>handleModal(item)} />
+                                  </View>}  
+          />
+          <Modal style={styles.modalContent}
+            visible={modalVisible}
+            >
+              <View style={styles.modalContainer}>
+                <View style={styles.modalContent}>
+                  <Text style={styles.modalText}>
+                    Estas seguro que queres eliminar:
+                  </Text>
+                  <Text style={styles.modalText}>{productSelect.title}</Text>
+                  <Button title='Confirmo' onPress={() => handleDeleteProduct()} />
+                  <Button title="Cerrar" onPress={()=>setModalVisible(false)} />
+                </View>
+              </View>
+          </Modal>
       </View>
     </View>
   )
@@ -52,7 +98,7 @@ const styles = StyleSheet.create({
     backgroundColor:"white",
     borderWidth: 4,
     padding: 4,
-    width: 200
+    width: 150
   }, 
   productCard : {
     backgroundColor:"blue",
@@ -66,6 +112,20 @@ const styles = StyleSheet.create({
   textProduct: {
     color: "white",
     padding: 10
+  },
+  modalContainer : {
+    flex: 1,
+    alignItems:"center",
+    justifyContent:"center"
+  },  
+  modalContent: {
+    width: '80%',
+    borderWidth: 2,
+    gap: 10,
+    padding: 10
+  },
+  modalText: {
+    textAlign: 'center'
   }
 })
 
