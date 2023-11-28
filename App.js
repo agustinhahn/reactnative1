@@ -44,8 +44,9 @@ const App = () => {
     let idBuscado = productSelect.id
     let indice = products.findIndex(item => item.id === idBuscado)
     if(indice !== -1){
-      products[indice].title = "holanuevonombreaqui"
+      products[indice].price = newPrecioProduct
     }
+    setNewPrecioProduct("")
     setModalEditVisible(false)
   }
 
@@ -94,18 +95,13 @@ const App = () => {
             >
               <View style={styles.modalContainer}>
                 <View style={styles.modalContent}>
-                  <TextInput 
-                  placeholder="Nuevo nombre"
-                  value={newTitleProduct}
-                  style={styles.input}
-                  onChangeText={(t)=> setNewTitleProduct(t)} />
+                  <Text style={styles.modalText}>Producto seleccionado: {productSelect.title}</Text>
+                  <Text style={styles.modalText}>Precio actual:{productSelect.price}</Text>
                   <TextInput 
                   placeholder="Nuevo precio"
                   value={newPrecioProduct}
                   style={styles.input}
                   onChangeText={(t)=> setNewPrecioProduct(t)} />
-                  <Text style={styles.modalText}>Nombre actual:{productSelect.title}</Text>
-                  <Text style={styles.modalText}>Precio actual:{productSelect.price}</Text>
                   <Button title='Confirmo' onPress={() => handleConfirmarCambio()} />
                   <Button title="Cerrar" onPress={()=>setModalEditVisible(false)} />
                 </View>
@@ -118,7 +114,7 @@ const App = () => {
 
 const styles = StyleSheet.create({
   containerGral: {
-    backgroundColor:"red",
+    backgroundColor:"#0D0628",
     flex:1,
     justifyContent:"start", 
     alignItems:"center"
@@ -134,13 +130,13 @@ const styles = StyleSheet.create({
     width: '100%'
   },
   input: {
-    backgroundColor:"white",
+    backgroundColor:"#FCFFFC",
     borderWidth: 4,
     padding: 4,
     width: 150
   }, 
   productCard : {
-    backgroundColor:"blue",
+    backgroundColor:"#647AA3",
     flexDirection: 'row',
     alignSelf: 'stretch',
     borderWidth: 4,
@@ -155,16 +151,18 @@ const styles = StyleSheet.create({
   modalContainer : {
     flex: 1,
     alignItems:"center",
-    justifyContent:"center"
+    justifyContent:"center",
+    backgroundColor: "#0D0628"
   },  
   modalContent: {
     width: '80%',
     borderWidth: 2,
     gap: 10,
-    padding: 10
+    padding: 10,
+    backgroundColor:"#337357"
   },
   modalText: {
-    textAlign: 'center'
+    textAlign: 'flex-start'
   }
 })
 
