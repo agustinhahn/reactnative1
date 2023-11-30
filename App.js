@@ -2,6 +2,9 @@
 import { useState } from 'react'
 import { View, StyleSheet, TextInput, Button, Text, FlatList, Modal } from 'react-native'
 import uuid from 'react-native-uuid';
+import ModalDelete from './src/components/ModalDelete';
+import AddProduct from './src/components/AddProduct';
+import ModalEdit from './src/components/ModalEdit';
 
 const App = () => {
 
@@ -52,19 +55,7 @@ const App = () => {
 
   return (
     <View style={styles.containerGral}>
-      <View style={styles.container}>
-        <TextInput 
-        placeholder="Nombre"
-        value={newTitleProduct}
-        style={styles.input}
-        onChangeText={(t)=> setNewTitleProduct(t)} />
-        <TextInput 
-        placeholder="Precio"
-        value={newPrecioProduct}
-        style={styles.input}
-        onChangeText={(t)=> setNewPrecioProduct(t)} />
-        <Button title="ADD" onPress={handleAddProduct}/>
-      </View>
+      <AddProduct product={newTitleProduct} price={newPrecioProduct} changeTitle={setNewTitleProduct} changePrice={setNewPrecioProduct} addProd={handleAddProduct}/>
       <View style={styles.listContainer}>
           <FlatList 
             data={products}
@@ -76,37 +67,8 @@ const App = () => {
                                     <Button title="DELETE" onPress={()=>handleModal(item)} />
                                   </View>}  
           />
-          <Modal style={styles.modalContent}
-            visible={modalVisible}
-            >
-              <View style={styles.modalContainer}>
-                <View style={styles.modalContent}>
-                  <Text style={styles.modalText}>
-                    Estas seguro que queres eliminar:
-                  </Text>
-                  <Text style={styles.modalText}>{productSelect.title}</Text>
-                  <Button title='Confirmo' onPress={() => handleDeleteProduct()} />
-                  <Button title="Cerrar" onPress={()=>setModalVisible(false)} />
-                </View>
-              </View>
-          </Modal>
-          <Modal style={styles.modalContent}
-            visible={modalEditVisible}
-            >
-              <View style={styles.modalContainer}>
-                <View style={styles.modalContent}>
-                  <Text style={styles.modalText}>Producto seleccionado: {productSelect.title}</Text>
-                  <Text style={styles.modalText}>Precio actual:{productSelect.price}</Text>
-                  <TextInput 
-                  placeholder="Nuevo precio"
-                  value={newPrecioProduct}
-                  style={styles.input}
-                  onChangeText={(t)=> setNewPrecioProduct(t)} />
-                  <Button title='Confirmo' onPress={() => handleConfirmarCambio()} />
-                  <Button title="Cerrar" onPress={()=>setModalEditVisible(false)} />
-                </View>
-              </View>
-          </Modal>
+          <ModalDelete product = {productSelect} onModal={handleModal} visible={modalVisible} onDelete={handleDeleteProduct}/>
+          <ModalEdit acceptEdit ={handleConfirmarCambio} acceptEditVisible ={setModalEditVisible} newPrice={setNewPrecioProduct} price={newPrecioProduct} product = {productSelect} visible={modalEditVisible} />
       </View>
     </View>
   )
@@ -162,7 +124,7 @@ const styles = StyleSheet.create({
     backgroundColor:"#337357"
   },
   modalText: {
-    textAlign: 'flex-start'
+    textAlign: 'flex-start  '
   }
 })
 
