@@ -65,12 +65,6 @@ const App = () => {
     <View style={styles.containerGral}>
       <Text style={styles.tituloh1}>STOCK APP</Text>
       <Button title='AGREGAR NUEVO PRODUCTO' onPress={()=>{setModalNewProduct(true)}}/>
-      <AddProduct 
-        product={newTitleProduct} 
-        price={newPrecioProduct} 
-        changeTitle={setNewTitleProduct} 
-        changePrice={setNewPrecioProduct} 
-        addProd={handleAddProduct}/>
       <ListProducts 
         products={products} 
         editCard={handleCard} 
