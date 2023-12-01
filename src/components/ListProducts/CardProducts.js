@@ -4,6 +4,7 @@ const CardProducts = ({item, onModal, editCard}) => {
     return (
         <View style={styles.productCard}>
                     <Text style={styles.textProduct}>{item.title}</Text>
+                    <Text style={styles.textProduct}>{item.stock}</Text>
                     <Text style={styles.textProduct}>{item.price}</Text>
                     <Button title="EDIT" onPress={() => editCard(item)} />
                     <Button title="DELETE" onPress={() => onModal(item)} />

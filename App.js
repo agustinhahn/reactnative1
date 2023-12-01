@@ -1,30 +1,39 @@
 
 import { useState } from 'react'
-import { View, StyleSheet, Text} from 'react-native'
+import { View, StyleSheet, Text, Button} from 'react-native'
 import uuid from 'react-native-uuid';
 import AddProduct from './src/components/AddProduct';
 import ListProducts from './src/components/ListProducts';
 import ModalDelete from './src/components/ModalDelete';
 import ModalEdit from './src/components/ModalEdit';
+import ModalNewProduct from './src/components/ModalNewProduct';
 
 const App = () => {
 
   const [newTitleProduct, setNewTitleProduct] = useState("")
   const [newPrecioProduct, setNewPrecioProduct] = useState("")
+  const [newStockProduct, setnewStockProduct] = useState("")
+  const [newCategoryProduct, setnewCategoryProduct] = useState("")
   const [products, setProducts] = useState([])
   const [productSelect, setproductSelect] = useState([])
   const [modalVisible, setModalVisible] = useState(false)
   const [modalEditVisible, setModalEditVisible] = useState(false)
+  const [modalNewProduct, setModalNewProduct] = useState(false)
   
   const handleAddProduct = () =>{
         const newProduct = {
           id : uuid.v4(),
           title:newTitleProduct,
-          price: newPrecioProduct
+          price: newPrecioProduct,
+          stock: newStockProduct,
+          category: newCategoryProduct
         }
         setProducts(current => [...current, newProduct])
         setNewTitleProduct("")
         setNewPrecioProduct("")
+        setnewStockProduct("")
+        setnewCategoryProduct("")
+        setModalNewProduct(false)
   }
 
   const handleModal = (item) => {
@@ -55,6 +64,7 @@ const App = () => {
   return (
     <View style={styles.containerGral}>
       <Text style={styles.tituloh1}>STOCK APP</Text>
+      <Button title='AGREGAR NUEVO PRODUCTO' onPress={()=>{setModalNewProduct(true)}}/>
       <AddProduct 
         product={newTitleProduct} 
         price={newPrecioProduct} 
@@ -77,6 +87,19 @@ const App = () => {
         price={newPrecioProduct}  
         products={productSelect} 
         visible={modalEditVisible}/>
+      <ModalNewProduct 
+        visible={modalNewProduct}
+        handleModal={setModalNewProduct}
+        addProd={handleAddProduct}
+        newProduct={newTitleProduct} 
+        newPrice={newPrecioProduct} 
+        newCategory={newCategoryProduct}
+        newStockProduct={newStockProduct}
+        changeTitle={setNewTitleProduct} 
+        changePrice={setNewPrecioProduct} 
+        changeStock={setnewStockProduct}
+        changeCategory={setnewCategoryProduct}
+      />
     </View>
   )
 }
