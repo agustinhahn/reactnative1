@@ -1,13 +1,13 @@
 import { View, StyleSheet, TextInput, Button, Modal, Text } from 'react-native'
 
-const ModalEdit = ({acceptEdit, acceptEditVisible, newPrice ,price, product, visible}) => {
+const ModalEdit = ({acceptEdit, acceptEditVisible, newPrice ,price, products, visible}) => {
     return (
         <Modal style={styles.modalContent}
             visible={visible}>
             <View style={styles.modalContainer}>
                 <View style={styles.modalContent}>
-                    <Text style={styles.modalText}>Producto seleccionado: {product.title}</Text>
-                    <Text style={styles.modalText}>Precio actual:{product.price}</Text>
+                    <Text style={styles.modalText}>Producto seleccionado: {products.title}</Text>
+                    <Text style={styles.modalText}>Precio actual:{products.price}</Text>
                     <TextInput
                         placeholder="Nuevo precio"
                         value={price}

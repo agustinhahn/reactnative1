@@ -1,6 +1,6 @@
 import { View, Button, Text, Modal, StyleSheet } from 'react-native'
 
-const ModalDelete = ({product, onModal, visible, onDelete }) => {
+const ModalDelete = ({products, onModal, visible, onDelete }) => {
     return (
         <Modal style={styles.modalContent}
             visible={visible}>
@@ -9,7 +9,7 @@ const ModalDelete = ({product, onModal, visible, onDelete }) => {
                     <Text style={styles.modalText}>
                         Estas seguro que queres eliminar:
                     </Text>
-                    <Text style={styles.modalText}>{product.title}</Text>
+                    <Text style={styles.modalText}>{products.title}</Text>
                     <Button title='Confirmo' onPress={() => onDelete()} />
                     <Button title="Cerrar" onPress={() => onModal(false)} />
                 </View>
