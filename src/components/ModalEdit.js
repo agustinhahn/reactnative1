@@ -5,6 +5,7 @@ const ModalEdit = ({acceptEdit, acceptEditVisible, newPrice ,price, products, vi
         <Modal style={styles.modalContent}
             visible={visible}>
             <View style={styles.modalContainer}>
+            <Text style={styles.tituloh1}>EDITAR PRODUCTO</Text>
                 <View style={styles.modalContent}>
                     <Text style={styles.modalText}>Producto seleccionado: {products.title}</Text>
                     <Text style={styles.modalText}>Precio actual:{products.price}</Text>
@@ -49,6 +50,12 @@ const styles = StyleSheet.create({
     },
     modalText: {
         textAlign: 'flex-start  '
+    },
+    tituloh1: {
+        color:"white",
+        fontSize:40,
+        marginTop:20,
+        marginBottom:20
     }
 })
 

@@ -13,7 +13,7 @@ const App = () => {
   const [newTitleProduct, setNewTitleProduct] = useState("")
   const [newPrecioProduct, setNewPrecioProduct] = useState("")
   const [newStockProduct, setnewStockProduct] = useState("")
-  const [newCategoryProduct, setnewCategoryProduct] = useState("")
+  const [newCategoryProduct, setnewCategoryProduct] = useState("Seleccionar")
   const [products, setProducts] = useState([])
   const [productSelect, setproductSelect] = useState([])
   const [modalVisible, setModalVisible] = useState(false)
@@ -71,7 +71,8 @@ const App = () => {
         onModal={handleModal}/>
       <ModalDelete 
         products={productSelect}  
-        visible={modalVisible} 
+        visible={modalVisible}
+        estadoModal = {setModalVisible}
         onModal={handleModal} 
         onDelete={handleDeleteProduct}  />
       <ModalEdit 
@@ -108,7 +109,8 @@ const styles = StyleSheet.create({
   tituloh1: {
     color:"white",
     fontSize:40,
-    marginTop:20
+    marginTop:20,
+    marginBottom:20
   }
 })
 
