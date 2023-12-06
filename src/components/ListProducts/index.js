@@ -1,14 +1,14 @@
 import { View, StyleSheet, FlatList } from 'react-native'
 import CardProducts from './CardProducts'
 
-const ListProducts = ({products, editCard, onModal}) => {
+const ListProducts = ({products, editCard, onModal, handleInfo}) => {
 
     return (
         <View style={styles.listContainer}>
             <FlatList
                 data={products}
                 keyExtractor={item => item.id}
-                renderItem={({ item }) => <CardProducts item ={item} onModal={onModal} editCard={editCard}/>}
+                renderItem={({ item }) => <CardProducts item ={item} onModal={onModal} editCard={editCard} handleInfo={handleInfo}/>}
             />
         </View>
     )

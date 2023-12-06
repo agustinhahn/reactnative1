@@ -1,23 +1,29 @@
 import { View, StyleSheet, TextInput, Button, Modal, Text } from 'react-native'
 
-const ModalEdit = ({acceptEdit, acceptEditVisible, newPrice ,price, products, visible}) => {
+const ModalEdit = ({acceptEdit, acceptEditVisible, newPrice ,price, products, visible, newStock, stock}) => {
     return (
         <Modal style={styles.modalContent}
             visible={visible}>
             <View style={styles.modalContainer}>
-            <Text style={styles.tituloh1}>EDITAR PRODUCTO</Text>
-                <View style={styles.modalContent}>
-                    <Text style={styles.modalText}>Producto seleccionado: {products.title}</Text>
-                    <Text style={styles.modalText}>Precio actual:{products.price}</Text>
-                    <TextInput
-                        placeholder="Nuevo precio"
-                        value={price}
-                        style={styles.input}
-                        onChangeText={(t) => newPrice(t)} />
-                    <Button title='Confirmo' onPress={() => acceptEdit()} />
-                    <Button title="Cerrar" onPress={() => acceptEditVisible(false)} />
+                <Text style={styles.tituloh1}>EDITAR PRODUCTO</Text>
+                    <View style={styles.modalContent}>
+                        <Text style={styles.modalText}>Producto seleccionado: {products.title}</Text>
+                        <Text style={styles.modalText}>Precio actual: ${products.price}</Text>
+                        <TextInput
+                            placeholder="Nuevo precio"
+                            value={price}
+                            style={styles.input}
+                            onChangeText={(t) => newPrice(t)} />
+                        <Text style={styles.modalText}>Stock actual: {products.stock}</Text>
+                        <TextInput
+                            placeholder="Nuevo stock"
+                            value={stock}
+                            style={styles.input}
+                            onChangeText={(t) => newStock(t)} />
+                        <Button title='Confirmo' onPress={() => acceptEdit()} />
+                        <Button title="Cerrar" onPress={() => acceptEditVisible(false)} />
+                    </View>
                 </View>
-            </View>
         </Modal>
     )
 }

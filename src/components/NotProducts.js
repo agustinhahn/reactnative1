@@ -16,7 +16,7 @@ export default NotProducts
 const styles = StyleSheet.create({
     subtitulo: {
         color:"white",
-        fontSize:20,
+        fontSize:15,
         marginTop:20,
         marginBottom:20,
     },

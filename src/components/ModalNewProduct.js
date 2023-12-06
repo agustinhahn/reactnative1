@@ -43,9 +43,9 @@ const ModalNewProduct = ({visible, addProd, newProduct, newPrice, newStock, newC
                             onValueChange = {(itemValue, itemIndex) => changeCategory(itemValue)}
                             style={styles.input}
                         >
-                            <Picker.Item label="opcion 1" value="opcion 1" />
-                            <Picker.Item label="opcion 2" value="opcion 2" />
-                            <Picker.Item label="opcion 3" value="opcion 3" />
+                            <Picker.Item label="ftth" value="opcion 1" />
+                            <Picker.Item label="wirelless" value="opcion 2" />
+                            <Picker.Item label="herramientas" value="opcion 3" />
                         </Picker>
                     </View>
                     <View style={styles.modalContent}>

@@ -41,7 +41,8 @@ const styles = StyleSheet.create({
         color:"white",
         fontSize:40,
         marginTop:20,
-        marginBottom:20
+        marginBottom:20,
+        textAlign:"center"
     }
 })
 

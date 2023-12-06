@@ -1,12 +1,12 @@
 import { View, StyleSheet, Button, Text } from 'react-native'
 
-const CardProducts = ({item, onModal, editCard}) => {
+const CardProducts = ({item, onModal, editCard, handleInfo}) => {
     return (
         <View style={styles.productCard}>
                     <Text style={styles.textProduct}>{item.title}</Text>
                     <Text style={styles.textProduct}>{item.stock}</Text>
                     <Text style={styles.textProduct}>${item.price}</Text>
-                    <Button style={styles.textProduct} title="INFO" onPress={() => console.log("aun nada")} />
+                    <Button style={styles.textProduct} title="INFO" onPress={() => handleInfo(item)} />
                     <Button style={styles.textProduct} title="EDIT" onPress={() => editCard(item)} />
                     <Button style={styles.textProduct}title="DELETE" onPress={() => onModal(item)} />
                 </View>
@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
     },
     textProduct: {
         color: "white",
-        padding: 10,
+        padding: 5,
     }
 })
 

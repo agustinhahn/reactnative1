@@ -29,6 +29,6 @@ const styles = StyleSheet.create({
     },
     textVar: {
         color: "white",
-        padding: 10,
+        padding: 5,
     }
 })
