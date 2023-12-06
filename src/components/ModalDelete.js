@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         gap: 10,
         padding: 10,
-        backgroundColor: "#337357"
+        backgroundColor: 'gray',
     },
     modalText: {
         textAlign: 'flex-start  '

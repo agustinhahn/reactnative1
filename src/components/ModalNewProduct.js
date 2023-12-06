@@ -48,9 +48,12 @@ const ModalNewProduct = ({visible, addProd, newProduct, newPrice, newStock, newC
                             <Picker.Item label="opcion 3" value="opcion 3" />
                         </Picker>
                     </View>
+                    <View style={styles.modalContent}>
+                        <Button style={styles.buttonstyle} title='Aceptar' onPress={() => addProd()} />
+                        <Button style={styles.buttonstyle} title="Cerrar" onPress={() => handleModal(false)} />
+                    </View>
                 </View>
-                    <Button style={styles.buttonstyle} title='Aceptar' onPress={() => addProd()} />
-                    <Button style={styles.buttonstyle} title="Cerrar" onPress={() => handleModal(false)} />
+
             </View>
         </Modal>
     )
@@ -71,29 +74,32 @@ const styles = StyleSheet.create({
     },
     modalContent: {
         flexDirection: 'row',
-        width: '80%',
+        width: '100%',
         gap: 10,
-        padding: 10
+        padding: 20,
+        justifyContent:"center",
+        alignItems:"center"
     },
     input: {
         backgroundColor: "#FCFFFC",
         borderWidth: 1,
-        padding: 4,
-        width: 180
+        padding: 2,
+        width: 180,
+        justifyContent:"center",
+        alignItems:'center'
     },
     modalText: {
-        textAlign: 'center',
         color: 'white',
-        padding: 4,
-        width: 150
+        padding: 2,
+        width: 70
     },
     buttonstyle: {
-        margin: 100,
+        margin: 50,
     },
     viewGral: {
         backgroundColor: 'gray',
         paddingTop: 10,
-        paddingBottom: 10
+        paddingBottom: 10,
     },
     tituloh1: {
         color:"white",

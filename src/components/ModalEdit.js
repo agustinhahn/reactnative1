@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         gap: 10,
         padding: 10,
-        backgroundColor: "#337357"
+        backgroundColor: 'gray',
     },
     input: {
         backgroundColor: "#FCFFFC",

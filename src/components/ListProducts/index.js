@@ -16,7 +16,7 @@ const ListProducts = ({products, editCard, onModal}) => {
 
 const styles = StyleSheet.create({
     listContainer:{
-        margin:50,
+        margin:30,
         width: '100%'
     },
 })
