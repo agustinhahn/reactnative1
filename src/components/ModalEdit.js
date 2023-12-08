@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
         width: 150
     },
     modalText: {
-        textAlign: 'flex-start  '
+        textAlign: 'left  '
     },
     tituloh1: {
         color:"white",

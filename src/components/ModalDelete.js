@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'gray',
     },
     modalText: {
-        textAlign: 'flex-start  '
+        textAlign: 'left  '
     },
     tituloh1: {
         color:"white",
